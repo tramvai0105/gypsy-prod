@@ -464,7 +464,7 @@ function MainBlock() {
     setFrame(id);
   }
   return /* @__PURE__ */ jsxs("div", { className: "bg-white flex min-h-[450px] max-h-[450px] flex-col gap-4 opacity-90 w-full py-14 px-6 rounded-xl", children: [
-    frame == 0 ? /* @__PURE__ */ jsx("div", { className: "flex-row flex", children: /* @__PURE__ */ jsxs("div", { className: "flex text-[#4cdeff] relative gap-6 text-6xl font-semibold text flex-col", children: [
+    frame == 0 ? /* @__PURE__ */ jsx("div", { className: "flex-row flex", children: /* @__PURE__ */ jsxs("div", { className: "flex text-[#4cdeff] relative gap-8 text-6xl w-full font-semibold text flex-col", children: [
       /* @__PURE__ */ jsx("span", { children: "Новый" }),
       /* @__PURE__ */ jsx("span", { children: "Иновационный" }),
       /* @__PURE__ */ jsx("span", { children: "Подход к интернет знакомствам" }),
@@ -1575,7 +1575,7 @@ function Footer() {
           /* @__PURE__ */ jsx("span", { className: "bg-[#cdff00] px-4 py-2 w-fit", children: "Frontend - NT&S" })
         ] })
       ] }),
-      /* @__PURE__ */ jsx("div", { className: "w-full bg-[#80e6ff] rounded-t-[60px] min-h-10 flex items-center px-14 mt-auto", children: /* @__PURE__ */ jsx(Link, { to: "https://github.com/tramvai0105", className: "text-[#1d4b54] hover:underline text-xl font-bold ml-auto", children: "Сделано by NT&S" }) })
+      /* @__PURE__ */ jsx("div", { className: "w-full bg-[#80e6ff] rounded-t-[60px] min-h-10 flex items-center px-[25%] mt-auto", children: /* @__PURE__ */ jsx(Link, { to: "https://github.com/tramvai0105", className: "text-[#1d4b54] hover:underline text-xl font-bold ml-auto", children: "Сделано by NT&S" }) })
     ] })
   ] });
 }
@@ -1676,7 +1676,7 @@ const Layout = observer(function Layout2() {
       /* @__PURE__ */ jsxs("div", { className: "flex flex-col w-[80%] h-full", children: [
         /* @__PURE__ */ jsx(Header, { change: changeShowBg }),
         /* @__PURE__ */ jsx(SideLinks, { token: store.token, links }),
-        /* @__PURE__ */ jsx("div", { className: "h-fit overflow-hidden w-[1150px] flex flex-col items-center backdrop-blur-md content-border-grad border-t-[2px] border-x-[2px]", children: !showBg ? /* @__PURE__ */ jsx(Outlet, {}) : /* @__PURE__ */ jsx(Fragment, {}) })
+        /* @__PURE__ */ jsx("div", { className: "h-fit overflow-hidden main-media w-[1150px] flex flex-col items-center backdrop-blur-md content-border-grad border-t-[2px] border-x-[2px]", children: !showBg ? /* @__PURE__ */ jsx(Outlet, {}) : /* @__PURE__ */ jsx(Fragment, {}) })
       ] })
     ] }),
     !showBg ? /* @__PURE__ */ jsx(Footer, {}) : /* @__PURE__ */ jsx(Fragment, {})
@@ -1684,7 +1684,7 @@ const Layout = observer(function Layout2() {
 });
 function Header({ change }) {
   const navigate = useNavigate();
-  return /* @__PURE__ */ jsxs("div", { title: "Показать фон", onClick: () => navigate("/"), className: `flex relative cursor-pointer mt-24 hover:backdrop-blur-sm rounded-t-xl flex-row text-7xl w-[1150px] items-center text-white justify-between px-2`, children: [
+  return /* @__PURE__ */ jsxs("div", { title: "Показать фон", onClick: () => navigate("/"), className: `flex relative cursor-pointer mt-24 hover:backdrop-blur-sm rounded-t-xl flex-row text-7xl main-media w-[1150px] items-center text-white justify-between px-2`, children: [
     /* @__PURE__ */ jsx("img", { src: dedi, width: 250 }),
     /* @__PURE__ */ jsx("img", { src: bstar, width: 45 }),
     /* @__PURE__ */ jsx("img", { src: gyps, width: 300 }),
@@ -1706,7 +1706,7 @@ function _SideMenu({ show }) {
     let data = await res.json();
     setTokenData(data.message);
   }
-  return /* @__PURE__ */ jsx("header", { className: "w-[300px] z-10 mt-24 flex flex-col items-center gap-2 h-fit", children: !show ? /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx(Auth, { tokenData }) }) : /* @__PURE__ */ jsx(Fragment, {}) });
+  return /* @__PURE__ */ jsx("header", { className: "w-[300px] side-menu-media z-10 mt-24 flex flex-col items-center gap-2 h-fit", children: !show ? /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx(Auth, { tokenData }) }) : /* @__PURE__ */ jsx(Fragment, {}) });
 }
 let links = [
   {
@@ -2297,7 +2297,7 @@ function ProfileCreate() {
     Object.keys(person).forEach((key) => body.append(key, String(person[key])));
     body.append("files", file);
     let res = await fetch(
-      "/api/postPersonByUser",
+      "/api/postPersonByUser/",
       {
         method: "POST",
         body
