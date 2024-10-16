@@ -7,9 +7,6 @@ export default defineConfig({
   plugins: [
     react(),
   ],
-  server: {
-    host: '127.0.0.1',  // Add this to force IPv4 only
-  },
   build: {
     rollupOptions: {
       input: {

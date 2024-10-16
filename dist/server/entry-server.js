@@ -35,8 +35,8 @@ class Store {
     this.checkToken();
   }
   async checkToken() {
-    console.log("http://89.223.122.165:5173");
-    let res = await fetch(`${"http://89.223.122.165:5173"}/auth/checktoken`);
+    console.log("http://89.223.122.165");
+    let res = await fetch(`${"http://89.223.122.165"}/auth/checktoken`);
     let data = (await res.json()).message;
     if (!data) {
       this.username = "";
@@ -573,7 +573,7 @@ function MainPage() {
     setType("");
   }
   async function getPersons() {
-    let data2 = await fetch(`${"http://89.223.122.165:5173"}/api/persons`);
+    let data2 = await fetch(`${"http://89.223.122.165"}/api/persons`);
     let products = await data2.json();
     setPersons(products);
   }
@@ -2465,7 +2465,7 @@ function Payment({ payment, id }) {
     ] })
   ] });
 }
-const url = "http://89.223.122.165:5173";
+const url = "http://89.223.122.165";
 const routes = [
   {
     path: "",
