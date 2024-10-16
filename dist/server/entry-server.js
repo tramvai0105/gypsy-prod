@@ -7,20 +7,19 @@ var __publicField = (obj, key, value) => {
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import ReactDOMServer from "react-dom/server";
 import { createStaticHandler, createStaticRouter, StaticRouterProvider } from "react-router-dom/server.mjs";
-import { useNavigate, Link, useLoaderData, useParams, useLocation, Outlet } from "react-router-dom";
+import { Link, useNavigate, useLoaderData, useParams, useLocation, Outlet } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { makeAutoObservable } from "mobx";
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
 function ErrorPage() {
-  const navigate = useNavigate();
   return /* @__PURE__ */ jsx("div", { className: "w-full h-[100vh] flex items-center justify-center", children: /* @__PURE__ */ jsxs("div", { className: "w-fit gap-6 h-full flex flex-col items-center justify-center text-6xl", children: [
     "Not Found 404",
     /* @__PURE__ */ jsx(
-      "a",
+      Link,
       {
         className: "text-4xl ml-auto border-[1px] bg-white border-black hover:bg-gray-100 shadow-md hover:shadow-lg hover:underline rounded-lg px-6 text-blue-400 py-2",
-        onClick: () => navigate("/"),
+        to: "",
         children: "To main page"
       }
     )
@@ -36,6 +35,7 @@ class Store {
     this.checkToken();
   }
   async checkToken() {
+    console.log("http://localhost:5173");
     let res = await fetch(`${"http://localhost:5173"}/auth/checktoken`);
     let data = (await res.json()).message;
     if (!data) {
@@ -573,7 +573,7 @@ function MainPage() {
     setType("");
   }
   async function getPersons() {
-    let data2 = await fetch("/api/persons");
+    let data2 = await fetch(`${"http://localhost:5173"}/api/persons`);
     let products = await data2.json();
     setPersons(products);
   }
