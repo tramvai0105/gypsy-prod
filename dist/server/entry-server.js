@@ -36,7 +36,7 @@ class Store {
     this.checkToken();
   }
   async checkToken() {
-    let res = await fetch(`http://localhost:5173/auth/checktoken`);
+    let res = await fetch(`${"http://localhost:5173"}/auth/checktoken`);
     let data = (await res.json()).message;
     if (!data) {
       this.username = "";
