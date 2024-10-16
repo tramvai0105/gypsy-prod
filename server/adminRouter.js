@@ -3,21 +3,26 @@ const adminRouter = express.Router()
 import fs from 'node:fs/promises'
 import { resolve } from 'path'
 import jwt from 'jsonwebtoken';
+import { User } from './models.js'
 
 const isProduction = process.env.MODE === 'production'
-  const middleware = async (req, res, next) => {
+const middleware = async (req, res, next) => {
   let token = req.cookies["token"];
-  if(!token){
+  if (!token) {
     return res.status(404).send("Not found")
   }
-  try{
+  try {
     let payload = jwt.verify(token, process.env.SECRET)
-    if(payload.privileges){
-      next()
-    }else{
+    if (!payload) {
       return res.status(404).send("Not found")
     }
-  }catch(error){
+    let user = await User.findById(payload._id)
+    if (user.privileges) {
+      next()
+    } else {
+      return res.status(404).send("Not found")
+    }
+  } catch (error) {
     return res.status(404).send("Not found");
   }
 }

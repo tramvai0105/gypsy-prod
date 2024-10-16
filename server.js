@@ -6,6 +6,7 @@ import authRouter from './server/authRouter.js'
 import "dotenv/config"
 import adminRouter from './server/adminRouter.js'
 import cookieParser from 'cookie-parser'
+import apiProtectedRouter from './server/apiProtectedRouter.js'
 
 // Constants
 const isProduction = process.env.MODE === 'production'
@@ -27,6 +28,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.static('public'))
 app.use(express.static('files'))
+app.use('/admin', express.static('files'))
 
 // Add Vite or respective production middlewares
 let vite
@@ -48,6 +50,7 @@ if (!isProduction) {
 
 app.use("/auth", authRouter)
 app.use("/api", apiRouter)
+app.use("/api", apiProtectedRouter)
 app.use("/admin", adminRouter)
 
 // Serve HTML
@@ -82,7 +85,7 @@ app.use('*', async (req, res) => {
   }
 })
 
-mongoose.connect('mongodb://127.0.0.1:27017/shop').then((res) => console.log("Db connected")).catch(err => console.log(err))
+mongoose.connect('mongodb://127.0.0.1:27017/gypsy').then((res) => console.log("Db connected")).catch(err => console.log(err))
 
 // Start http server
 app.listen(port, () => {
