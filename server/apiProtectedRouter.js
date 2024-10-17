@@ -719,21 +719,21 @@ apiProtectedRouter.post('/postPersonByUser', upload.single("files"), async (req,
     };
     let validated = inspector.validate(validation, req.body)
     if (!validated.valid) {
-        return res.status(501).json({ message: "Неверные данные" });
+        return res.status(200).json({ message: "Неверные данные" });
     }
     let persons = await Person.find({name: req.body.name});
     if(persons && persons.length > 0){
-        return res.status(501).json({ message: "Это имя уже занято" })
+        return res.status(200).json({ message: "Это имя уже занято" })
     }
     if (!req.file) {
-        return res.status(501).json({ message: "Изображение не найдено" })
+        return res.status(200).json({ message: "Изображение не найдено" })
     }
     if (req.file
         && !(req.file.mimetype == "image/png"
             || req.file.mimetype == "image/jpg"
             || req.file.mimetype == "image/jpeg")) {
         fs.unlink(resolve(resolve(), "public", req.file.filename), (err) => err && console.error(err));
-        return res.status(501).json({ message: "Неверный тип файла" });
+        return res.status(200).json({ message: "Неверный тип файла" });
     }
     if (req.file) {
         req.body.image = req.file.filename;
@@ -753,6 +753,7 @@ apiProtectedRouter.post('/postPersonByUser', upload.single("files"), async (req,
         await (new Person(req.body)).save()
         return res.status(200).json({ message: "Данные добавлены" });
     } catch (error) {
+        console.log(error)
         return res.status(501).json({ message: error });
     }
 })

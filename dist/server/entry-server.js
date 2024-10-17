@@ -2331,8 +2331,8 @@ function ProfileCreate() {
       menu(),
       /* @__PURE__ */ jsx("div", { className: "person-bg rounded-t-xl", children: /* @__PURE__ */ jsxs("div", { className: "flex rounded-t-xl backdrop-blur-sm flex-col px-6 pt-6 pb-20 w-full h-fit min-h-full", children: [
         /* @__PURE__ */ jsxs("div", { className: "flex flex-row h-fit", children: [
-          /* @__PURE__ */ jsx("label", { htmlFor: "photoProfiles", children: !file ? /* @__PURE__ */ jsx("div", { className: "min-w-[500px] text-6xl flex cursor-pointer items-center justify-center bg-white rounded-xl bg-opacity-85 min-h-[400px]", children: /* @__PURE__ */ jsx("span", { children: "Вставить фото" }) }) : /* @__PURE__ */ jsx("img", { ref: imageRef, className: "rounded-xl cursor-pointer min-w-[500px] max-h-[400px] min-h-[400px] object-cover", width: 500, height: 400, src: `/${person.image}` }) }),
-          /* @__PURE__ */ jsx("input", { id: "photoProfiles", className: "hidden", accept: "image/png, image/jpeg", onChange: (e) => setFile(e.target.files && e.target.files[0]), type: "file" }),
+          /* @__PURE__ */ jsx("label", { htmlFor: "profiles", children: !file ? /* @__PURE__ */ jsx("div", { className: "min-w-[500px] text-6xl flex cursor-pointer items-center justify-center bg-white rounded-xl bg-opacity-85 min-h-[400px]", children: /* @__PURE__ */ jsx("span", { children: "Вставить фото" }) }) : /* @__PURE__ */ jsx("img", { ref: imageRef, className: "rounded-xl cursor-pointer min-w-[500px] max-h-[400px] min-h-[400px] object-cover", width: 500, height: 400, src: `/${person.image}` }) }),
+          /* @__PURE__ */ jsx("input", { id: "profiles", className: "hidden", accept: "image/png, image/jpeg", onChange: (e) => setFile(e.target.files && e.target.files[0]), type: "file" }),
           /* @__PURE__ */ jsxs("div", { className: "pl-12 bg-white w-full bg-opacity-85 gap-4 ml-2 pb-4 pt-6 pr-4 rounded-2xl text-xl flex flex-col", children: [
             /* @__PURE__ */ jsxs("div", { className: "flex gap-10 flex-row items-center", children: [
               /* @__PURE__ */ jsx("span", { children: "Имя :" }),
