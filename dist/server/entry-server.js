@@ -43,7 +43,6 @@ class Store {
       this.id = "";
       return;
     }
-    console.log(data);
     this.id = data.id;
     this.username = data.username;
     this.token = data;
@@ -538,7 +537,7 @@ function Slider({ max, frame, set }) {
     if (frame != i)
       return /* @__PURE__ */ jsx("div", { onClick: () => localSetter(i, true), className: "py-3 cursor-pointer", children: /* @__PURE__ */ jsx("div", { className: "bg-purple-100 w-[30px] h-[4px] rounded-full" }) }, i);
     else
-      return /* @__PURE__ */ jsx("div", { onClick: () => localSetter(i, true), className: "py-3 cursor-pointer", children: /* @__PURE__ */ jsx("div", { className: "bg-purple-300 w-[80px] cursor-pointer h-[4px] rounded-full" }) }, i);
+      return /* @__PURE__ */ jsx("div", { onClick: () => localSetter(i, true), className: "py-3 cursor-pointer", children: /* @__PURE__ */ jsx("div", { className: "bg-purple-300 animate-pulse w-[80px] cursor-pointer h-[4px] rounded-full" }) }, i);
   }) });
 }
 function MainPage() {
@@ -565,17 +564,9 @@ function MainPage() {
     }
     setFPersons(arr);
   }
-  useEffect(() => {
-    getPersons();
-  }, []);
   function clear() {
     setFilter("");
     setType("");
-  }
-  async function getPersons() {
-    let data2 = await fetch(`${"http://24dctservice.ru"}/api/persons`);
-    let products = await data2.json();
-    setPersons(products);
   }
   return /* @__PURE__ */ jsxs("div", { className: "flex p-5 flex-col gap-3 w-full h-fit min-h-[100vh]", children: [
     /* @__PURE__ */ jsx(MainBlock, {}),
@@ -1392,7 +1383,7 @@ function _PersonPage() {
       /* @__PURE__ */ jsx("img", { className: "w-[75px]", src: urod })
     ] }),
     /* @__PURE__ */ jsxs("div", { className: "flex flex-row h-fit w-full", children: [
-      /* @__PURE__ */ jsx("img", { className: "rounded-xl min-w-[450px] min-h-[350px] object-cover", width: 450, height: 350, src: `/${person.image}` }),
+      /* @__PURE__ */ jsx("img", { className: "rounded-xl min-w-[450px] min-h-[350px] max-h-[400px] max-w-[450px] object-cover", width: 450, height: 350, src: `/${person.image}` }),
       /* @__PURE__ */ jsxs("div", { className: "pl-12 bg-white bg-opacity-85 ml-2 pb-4 pt-6 pr-4 rounded-2xl text-xl flex w-full flex-col justify-between gap-4", children: [
         /* @__PURE__ */ jsxs("div", { className: "flex gap-6 flex-row items-center", children: [
           /* @__PURE__ */ jsxs("span", { children: [
@@ -2088,6 +2079,15 @@ function ProfileEdit() {
                 "Цена за 8 часов: ",
                 /* @__PURE__ */ jsx(TextInput$1, { value: person.bigPrice, setter: formDataSetter, property: "bigPrice" })
               ] })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "flex flex-row gap-2", children: [
+              /* @__PURE__ */ jsx("span", { children: "Отображать на главной:" }),
+              /* @__PURE__ */ jsx("input", { defaultChecked: person.show, onChange: () => setPerson((prev) => {
+                if (prev) {
+                  prev.show = !prev.show;
+                }
+                return prev;
+              }), className: "w-[22px] h-[22px]", type: "checkbox" })
             ] })
           ] })
         ] }),
@@ -2265,7 +2265,8 @@ function ProfileCreate() {
     category: "grand",
     image: "",
     gender: "man",
-    age: 0
+    age: 0,
+    show: true
   };
   const [person, setPerson] = useState(blankPerson);
   useRef(null);
@@ -2369,6 +2370,13 @@ function ProfileCreate() {
                 /* @__PURE__ */ jsx("option", { value: "gypsy", children: "woman" }),
                 /* @__PURE__ */ jsx("option", { value: "tadj", children: "trans" })
               ] })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "flex flex-row gap-2", children: [
+              /* @__PURE__ */ jsx("span", { children: "Отображать на главной:" }),
+              /* @__PURE__ */ jsx("input", { defaultChecked: person.show, onChange: () => setPerson((prev) => {
+                prev.show = !prev.show;
+                return prev;
+              }), className: "w-[22px] h-[22px]", type: "checkbox" })
             ] })
           ] })
         ] }),
@@ -2533,7 +2541,7 @@ const routes = [
   }
 ];
 async function mainPageLoader() {
-  let data = await fetch(`${url}/api/persons`);
+  let data = await fetch(`${url}/api/personsMainPage`);
   let persons = await data.json();
   return persons;
 }

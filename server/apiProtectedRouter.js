@@ -619,6 +619,7 @@ apiProtectedRouter.put('/putPersonByUser', upload.single("files"), async (req, r
             lips: { type: 'number', minLength: 1 },
             description: { type: 'string', minLength: 5 },
             image: { type: 'string', minLength: 5 },
+            show: {type: 'boolean'},
             gender: { type: 'string', minLength: 1 },
         },
     };
@@ -715,6 +716,7 @@ apiProtectedRouter.post('/postPersonByUser', upload.single("files"), async (req,
             description: { type: 'string', minLength: 5 },
             image: { type: 'string', minLength: 5 },
             gender: { type: 'string', minLength: 1 },
+            show: { type: 'boolean' },
         },
     };
     let validated = inspector.validate(validation, req.body)

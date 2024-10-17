@@ -36,6 +36,17 @@ apiRouter.get('/persons', async (req, res) => {
   }
 })
 
+apiRouter.get('/personsMainPage', async (req, res) => {
+  try {
+    let persons = await Person.find({show: true});
+    res.send(JSON.stringify(persons))
+  }
+  catch (error) {
+    console.log(error)
+  }
+})
+
+
 apiRouter.post('/persons', async (req, res) => {
   try {
     let persons = await Person.find({_id: {$in: req.body.persons}})
