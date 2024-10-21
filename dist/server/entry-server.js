@@ -12,6 +12,7 @@ import { useState, useEffect, useRef } from "react";
 import { makeAutoObservable } from "mobx";
 import clsx from "clsx";
 import { observer } from "mobx-react-lite";
+import { keyframes, styled } from "styled-components";
 function ErrorPage() {
   return /* @__PURE__ */ jsx("div", { className: "w-full h-[100vh] flex items-center justify-center", children: /* @__PURE__ */ jsxs("div", { className: "w-fit gap-6 h-full flex flex-col items-center justify-center text-6xl", children: [
     "Not Found 404",
@@ -506,10 +507,10 @@ function MainBlock() {
       /* @__PURE__ */ jsx("img", { className: "w-[170px] h-[150px] object-cover absolute right-36 top-12", src: urod }),
       /* @__PURE__ */ jsx(Link, { to: "/about", className: "text-lg absolute right-0 -bottom-14 bg-[#4cdeff] text-white hover:text-[#4cdeff] hover:bg-white", children: "чуть больше о нас" })
     ] }) }) : /* @__PURE__ */ jsx(Fragment, {}),
-    /* @__PURE__ */ jsx(Slider, { max: maxFrames, frame, set })
+    /* @__PURE__ */ jsx(Slider$1, { max: maxFrames, frame, set })
   ] });
 }
-function Slider({ max, frame, set }) {
+function Slider$1({ max, frame, set }) {
   const interval = useRef(null);
   useState(false);
   const stop = useRef(false);
@@ -2473,6 +2474,358 @@ function Payment({ payment, id }) {
     ] })
   ] });
 }
+const knur = "/assets/knur-B4CZ2-xK.jpg";
+function Slider({ loaded }) {
+  const sDiv = useRef(null);
+  const imagesRef = useRef(null);
+  const bgRef = useRef(null);
+  const elvisRef = useRef(null);
+  const elvisTranslate = useRef(24);
+  const kingRef = useRef(null);
+  const kingTranslate = useRef(0);
+  const pigRef = useRef(null);
+  const logoRef = useRef(null);
+  const menuRef = useRef(null);
+  const scroll = useRef(0);
+  useEffect(() => {
+    if (sDiv.current) {
+      sDiv.current.addEventListener("wheel", (e) => scrollHorizontal(e));
+      sDiv.current.addEventListener("mousedown", (e) => onMouseDown(e));
+    }
+  }, []);
+  function onMouseDown(e) {
+    if (imagesRef.current && (e.offsetX > e.target.clientWidth || e.offsetY > e.target.clientHeight)) {
+      scroll.current = e.offsetX / document.body.offsetWidth * imagesRef.current.clientWidth;
+    }
+  }
+  function scrollHorizontal(e) {
+    scroll.current += e.deltaY;
+    scroll.current += e.deltaX;
+    if (scroll.current < 0) {
+      scroll.current = 0;
+    }
+    if (sDiv.current && imagesRef.current && scroll.current > imagesRef.current.clientWidth) {
+      scroll.current = imagesRef.current.clientWidth;
+    }
+  }
+  if (typeof window !== "undefined") {
+    let animateScroll = function() {
+      if (bgRef.current) {
+        let blur = scroll.current / document.body.clientWidth * 10;
+        bgRef.current.style.filter = `blur(${blur < 10 ? blur : 10}px)`;
+      }
+      if (elvisRef.current && kingRef.current && pigRef.current) {
+        let border = document.body.clientWidth - (24 + pigRef.current.clientWidth + kingRef.current.clientWidth + elvisRef.current.clientWidth);
+        let sl = scroll.current > 24 ? scroll.current : 24;
+        let p = sl < border ? sl : border;
+        let diff = (p - elvisTranslate.current) / 20;
+        elvisTranslate.current += Math.abs(diff) > 1e-4 ? diff : 0;
+        elvisRef.current.style.transform = `translateX(${elvisTranslate.current}px)`;
+      }
+      if (kingRef.current && pigRef.current) {
+        let border = document.body.clientWidth / 2 + kingRef.current.clientWidth / 2 - (24 + pigRef.current.clientWidth + kingRef.current.clientWidth);
+        let p = scroll.current / 2 < border ? scroll.current / 2 : border;
+        let diff = (p - kingTranslate.current) / 20;
+        kingTranslate.current += Math.abs(diff) > 1e-4 ? diff : 0;
+        kingRef.current.style.transform = `translateX(${kingTranslate.current}px)`;
+      }
+      if (sDiv.current) {
+        let diff = (sDiv.current.scrollLeft - scroll.current) / 20;
+        console.log(diff);
+        sDiv.current.scrollBy({ left: -diff, behavior: "instant" });
+      }
+      if (menuRef.current) {
+        let op = scroll.current / (document.body.clientWidth * 2);
+        menuRef.current.style.opacity = `${op}`;
+      }
+      if (logoRef.current) {
+        let op = scroll.current / (document.body.clientWidth * 2);
+        logoRef.current.style.opacity = `${op}`;
+      }
+      window.requestAnimationFrame(animateScroll);
+    };
+    window.requestAnimationFrame(animateScroll);
+  }
+  return /* @__PURE__ */ jsxs("div", { ref: sDiv, className: "h-[100vh] relative flex flex-row overflow-x-scroll overflow-y-hidden", children: [
+    /* @__PURE__ */ jsxs("div", { className: "min-w-[100vw] relative h-[100vh]", children: [
+      /* @__PURE__ */ jsx("div", { className: "absolute z-20 w-full pl-4 py-4 h-full overflow-hidden", children: /* @__PURE__ */ jsx("div", { ref: bgRef, className: "slider-bg w-full h-full" }) }),
+      /* @__PURE__ */ jsxs("div", { className: "z-30 select-none justify-between text-white leading-[220px] relative flex flex-row items-center w-full h-full", children: [
+        /* @__PURE__ */ jsxs("div", { ref: elvisRef, className: "flex flex-col relative justify-between h-full", children: [
+          /* @__PURE__ */ jsx("span", { className: "text-[12rem]", children: "E" }),
+          /* @__PURE__ */ jsx("span", { className: "text-4xl text-center", children: "Elvis" }),
+          /* @__PURE__ */ jsx("span", { className: "text-[12rem]", children: "K" })
+        ] }),
+        /* @__PURE__ */ jsx("div", { ref: kingRef, className: "flex text-4xl px-6 flex-row justify-between", children: /* @__PURE__ */ jsx("span", { className: " ", children: "King" }) }),
+        /* @__PURE__ */ jsxs("div", { ref: pigRef, className: "flex flex-col pr-6 justify-between h-full", children: [
+          /* @__PURE__ */ jsx("span", { className: "text-center animate-pulse", children: "Крутить ↓" }),
+          /* @__PURE__ */ jsx("span", { className: "text-4xl", children: "Pigsley" }),
+          /* @__PURE__ */ jsx("span", { className: "text-[12rem]", children: "P" })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxs("a", { ref: logoRef, href: "/knur", className: "fixed z-10 leading-none text-white text-[6rem] flex flex-col top-0 left-4", children: [
+      /* @__PURE__ */ jsx("span", { className: "", children: "E" }),
+      /* @__PURE__ */ jsxs("div", { className: "flex flex-row gap-3", children: [
+        /* @__PURE__ */ jsx("span", { children: "K" }),
+        /* @__PURE__ */ jsx("span", { children: "P" })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxs("div", { ref: imagesRef, className: "flex relative pl-12 flex-row w-fit items-end gap-6 bg-[#e1e4e8]", children: [
+      /* @__PURE__ */ jsx("span", { className: "absolute left-12 bottom-[75%]", children: "Текст на смартфоне при таче" }),
+      new Array(38).fill(0).map((el, i) => {
+        return /* @__PURE__ */ jsx(ImageCont, { text: phrases[i], id: i }, i);
+      }),
+      /* @__PURE__ */ jsxs("div", { className: "w-[70vw] flex flex-col text-xl gap-6 justify-center h-full items-center", children: [
+        /* @__PURE__ */ jsx("img", { className: "w-[25vw] h-[50vh] object-cover", src: knur }),
+        /* @__PURE__ */ jsx("a", { target: "_blank", href: "http://t.me/pigsboars", className: "border-[#646f77] border-[1px] rounded-full px-4 py-2 hover:text-[#646f77] hover:bg-white", children: "Подпишись на меня" })
+      ] })
+    ] })
+  ] });
+}
+function ImageCont({ id, text: text2 }) {
+  const imgRef = useRef(null);
+  const divRef = useRef(null);
+  const [w, setW] = useState(null);
+  useEffect(() => {
+    calc();
+  }, []);
+  function calc() {
+    if (divRef.current && imgRef.current) {
+      let ratio = imgRef.current.naturalHeight / imgRef.current.naturalWidth;
+      setW(divRef.current.clientHeight / ratio);
+    }
+  }
+  return /* @__PURE__ */ jsxs("div", { className: "flex show-text-div text-xl group flex-col relative", children: [
+    /* @__PURE__ */ jsx("div", { className: "show-text mb-2 ml-2 relative", children: /* @__PURE__ */ jsx("span", { className: "", children: text2 }) }),
+    /* @__PURE__ */ jsx("div", { style: { width: w ? `${w}px` : "300px" }, ref: divRef, className: "h-[50vh] overflow-hidden w-[300px] flex items-end", children: /* @__PURE__ */ jsx("img", { onLoad: () => calc(), style: { width: w ? `${w}px` : "300px" }, ref: imgRef, className: "object-cover transition-all duration-500 group-hover:scale-110 h-[50vh] mt-auto", src: `/pigs/id${id}.jpg` }) })
+  ] });
+}
+const phrases = [
+  "Не просто свинья, а идея",
+  "Удивительный хряк",
+  "Пигги",
+  "Оинк-Оинк",
+  "Микрокомпакт Носач",
+  "Предводитель скотландии",
+  "Мммм! Трюфели",
+  "Я уебался",
+  "Лежать на солнце греться для свиньи полезно",
+  "Винья",
+  "Солома Сено Грязь",
+  "Я вкушаю кровь своих врагов",
+  "Очень люблю свою mammy",
+  "Я пиво не пью - это пиздежь",
+  "Говном затопило города и сёла",
+  "Сбежал в Таганрог",
+  "В поисках компактности",
+  "Я Элвис Королевский Хрюкерс",
+  "Макаки - лохи",
+  "Я заебался это писать",
+  "Запрещаю пукать",
+  "Стуки ну и хрюкнуть на худой конец",
+  "У Элвиса фимоз",
+  "Пышные формы свиньи",
+  "Демонтажник",
+  "После вакцинации",
+  "Забор под напряжением",
+  "Привет, я хряк!",
+  "В лесу",
+  "Не морда, а крейсер",
+  "Самый умный кабанчик",
+  "Вииии!",
+  "Куча моего маринованого кала",
+  "Люблю пледики",
+  "В глазах двоится",
+  "Ступенька судьбы",
+  "После поисков",
+  "Ботинок уселся"
+];
+const bg = "/assets/farma-DaZogYCL.jpeg";
+function Loader({ loaded, setLoaded }) {
+  const images = useRef(new Array(5).fill(0).map((el, i) => ""));
+  const [counter, setCounter] = useState(0);
+  useEffect(() => {
+    loadImages();
+  }, []);
+  useEffect(() => {
+    if (counter == images.current.length) {
+      setLoaded();
+    }
+  }, [counter]);
+  async function loadImages() {
+    for (let i = 0; i < images.current.length; i++) {
+      let res = await fetch(`/pigs/id${i}.jpg`);
+      let blob = await res.blob();
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onload = () => {
+        if (typeof reader.result == "string") {
+          images.current[i] = reader.result;
+        }
+        setCounter((prev) => prev + 1);
+      };
+    }
+  }
+  const scale = keyframes`
+        0% {
+            transform: scale(0.85);
+            opacity: 0.0;
+        }
+        1%{
+            opacity: 1.0;
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        99% {
+            opacity : 1.0
+        }
+        100% {
+            transform: scale(0.85);
+            opacity : 0.0;
+        }
+    `;
+  const hide = keyframes`
+        0%{
+            display: flex;
+        }
+        99%{
+            display: flex;
+        }
+        100%{
+            display: none;
+        }
+    `;
+  const w = (id) => {
+    return 25 * 25 - id * 30 - id * 20;
+  };
+  const h = (id) => {
+    return 25 * 25 - id * 30 - id * 20;
+  };
+  const LoaderImgDivS = styled(LoaderImgDiv)`
+        position: absolute;
+        z-index: 10;
+        // border: 1px solid black;
+        width: ${(props) => w(props.id)}px;
+        height: ${(props) => h(props.id)}px;
+        animation: ${scale} ${({ id }) => 2e3 - id * 200}ms ${({ id }) => 200 * id}ms both;
+        animation-play-state: ${loaded ? "runnig" : "paused"};
+        `;
+  const LoaderImgS = styled(LoaderImg)`
+        width: ${(props) => w(props.id)}px;
+        height: ${(props) => h(props.id)}px;
+        animation: ${scale} ${({ id }) => 2e3 - id * 200}ms ${({ id }) => 200 * id}ms bots;
+        animation-play-state: ${loaded ? "runnig" : "paused"};
+        object-fit: cover;
+        `;
+  const LoaderMainDiv = styled.div`
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        display: flex;
+        z-index: 50;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        background-color: #e1e4e8;
+        animation: ${hide} 4600ms both;
+        animation-play-state: ${loaded ? "runnig" : "paused"};
+    `;
+  const sliderBg = keyframes`
+        0% {
+            transform: scale(0);
+        }
+        1%{
+        }
+        50% {
+            transform: scale(0.5);
+        }
+        65% {
+            transform: scale(0.9);
+        }
+        100% {
+            transform: scale(1.0);
+    }
+    `;
+  const SliderBgDiv = styled.div`
+        height: 100%;
+        width: 100%;
+        background-image: url(${bg});
+        background-size: cover;
+        animation: ${sliderBg} 1800ms 1000ms both;
+        animation-play-state: ${loaded ? "runnig" : "paused"};
+    `;
+  const bigLetter = keyframes`
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    `;
+  const BigLetter = styled.span`
+        animation: ${bigLetter} 100ms 3000ms both;
+        animation-play-state: ${loaded ? "runnig" : "paused"};
+        animation-play-state: ${loaded ? "runnig" : "paused"};
+        font-size: 12rem;
+    `;
+  const smallLetter = keyframes`
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    `;
+  const SmallLetter = styled.span`
+        animation: ${smallLetter} 900ms ${({ id }) => 3200 + id * 250}ms both;
+        animation-play-state: ${loaded ? "runnig" : "paused"};
+        animation-play-state: ${loaded ? "runnig" : "paused"};
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        text-align: center;
+    `;
+  return /* @__PURE__ */ jsxs(LoaderMainDiv, { children: [
+    !loaded ? /* @__PURE__ */ jsxs("div", { className: "w-full absolute bg-[#e1e4e8] top-0 z-50 left-0 right-0 bottom-0 h-full flex items-center justify-center", children: [
+      /* @__PURE__ */ jsx("span", { className: "absolute text-xl", children: "Loading pigs..." }),
+      /* @__PURE__ */ jsx("div", { className: "w-[200px] h-[200px] border-[#646f77] border-dashed animate-spin rounded-full border-[2px]" })
+    ] }) : /* @__PURE__ */ jsx(Fragment, {}),
+    loaded ? /* @__PURE__ */ jsxs("div", { className: "min-w-[100vw] z-20 relative h-[100vh]", children: [
+      /* @__PURE__ */ jsx("div", { className: "absolute z-10 w-full pl-4 py-4 h-full overflow-hidden", children: /* @__PURE__ */ jsx(SliderBgDiv, {}) }),
+      /* @__PURE__ */ jsxs("div", { className: "z-10 select-none justify-between text-white leading-[220px] relative flex flex-row items-center w-full h-full", children: [
+        /* @__PURE__ */ jsxs("div", { className: "flex pl-6 flex-col relative justify-between h-full", children: [
+          /* @__PURE__ */ jsx(BigLetter, { children: "E" }),
+          /* @__PURE__ */ jsx(SmallLetter, { id: 1, children: "Elvis" }),
+          /* @__PURE__ */ jsx(BigLetter, { children: "K" })
+        ] }),
+        /* @__PURE__ */ jsx("div", { className: "flex text-4xl px-6 flex-row justify-between", children: /* @__PURE__ */ jsx(SmallLetter, { id: 2, className: "pr-6", children: "King" }) }),
+        /* @__PURE__ */ jsxs("div", { className: "flex flex-col pr-6 justify-between h-full", children: [
+          /* @__PURE__ */ jsx("span", { className: "text-center", children: "‌" }),
+          /* @__PURE__ */ jsx(SmallLetter, { id: 3, children: "Pigsley" }),
+          /* @__PURE__ */ jsx(BigLetter, { children: "P" })
+        ] })
+      ] })
+    ] }) : /* @__PURE__ */ jsx(Fragment, {}),
+    loaded ? images.current.map((el, i) => /* @__PURE__ */ jsx(LoaderImgDivS, { id: i, children: /* @__PURE__ */ jsx(LoaderImgS, { src: el, id: i }, i) }, i)) : /* @__PURE__ */ jsx(Fragment, {})
+  ] });
+}
+function LoaderImgDiv({ className, id, children }) {
+  return /* @__PURE__ */ jsx("div", { className, children });
+}
+function LoaderImg({ className, id, src }) {
+  return /* @__PURE__ */ jsx("img", { src, className });
+}
+function Best() {
+  const [imgLoaded, setImgLoaded] = useState(false);
+  function loaded() {
+    setImgLoaded(true);
+  }
+  return /* @__PURE__ */ jsxs("div", { className: "h-full bg-[#e1e4e8] relative best-font overflow-y-hidden", children: [
+    /* @__PURE__ */ jsx(Loader, { setLoaded: loaded, loaded: imgLoaded }),
+    /* @__PURE__ */ jsx(Slider, { loaded: imgLoaded })
+  ] });
+}
 const url = "http://24dctservice.ru";
 const routes = [
   {
@@ -2538,6 +2891,10 @@ const routes = [
   {
     path: "/about",
     element: /* @__PURE__ */ jsx(About, {})
+  },
+  {
+    path: "/best",
+    element: /* @__PURE__ */ jsx(Best, {})
   }
 ];
 async function mainPageLoader() {
