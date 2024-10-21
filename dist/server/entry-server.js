@@ -2597,7 +2597,7 @@ function ImageCont({ id, text: text2 }) {
   }
   return /* @__PURE__ */ jsxs("div", { className: "flex show-text-div text-xl group flex-col relative", children: [
     /* @__PURE__ */ jsx("div", { className: "show-text mb-2 ml-2 relative", children: /* @__PURE__ */ jsx("span", { className: "", children: text2 }) }),
-    /* @__PURE__ */ jsx("div", { style: { width: w ? `${w}px` : "300px" }, ref: divRef, className: "h-[50vh] overflow-hidden w-[300px] flex items-end", children: /* @__PURE__ */ jsx("img", { onLoad: () => calc(), style: { width: w ? `${w}px` : "300px" }, ref: imgRef, className: "object-cover transition-all duration-500 group-hover:scale-110 h-[50vh] mt-auto", src: `/pigs/id${id}.jpg` }) })
+    /* @__PURE__ */ jsx("div", { style: { width: w ? `${w}px` : "300px" }, ref: divRef, className: "h-[50vh] overflow-hidden w-[300px] flex items-end", children: /* @__PURE__ */ jsx("img", { onLoad: () => calc(), style: { width: w ? `${w}px` : "300px" }, ref: imgRef, className: "object-cover transition-all duration-500 group-hover:scale-110 h-[50vh] mt-auto", src: `/id${id}.jpg` }) })
   ] });
 }
 const phrases = [
@@ -2654,7 +2654,7 @@ function Loader({ loaded, setLoaded }) {
   }, [counter]);
   async function loadImages() {
     for (let i = 0; i < images.current.length; i++) {
-      let res = await fetch(`/pigs/id${i}.jpg`);
+      let res = await fetch(`/id${i}.jpg`);
       let blob = await res.blob();
       const reader = new FileReader();
       reader.readAsDataURL(blob);
