@@ -5,6 +5,7 @@ import apiRouter from './server/apiRouter.js'
 import authRouter from './server/authRouter.js'
 import "dotenv/config"
 import adminRouter from './server/adminRouter.js'
+import bestRouter from './server/bestRouter.js'
 import cookieParser from 'cookie-parser'
 import apiProtectedRouter from './server/apiProtectedRouter.js'
 
@@ -53,6 +54,8 @@ app.use("/auth", authRouter)
 app.use("/api", apiRouter)
 app.use("/api", apiProtectedRouter)
 app.use("/admin", adminRouter)
+app.use("/best", bestRouter)
+
 
 // Serve HTML
 app.use('*', async (req, res) => {
