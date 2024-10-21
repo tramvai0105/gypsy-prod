@@ -28,6 +28,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.static('public'))
 app.use(express.static('files'))
+app.use(express.static('pigs'))
 app.use('/admin', express.static('files'))
 
 // Add Vite or respective production middlewares
