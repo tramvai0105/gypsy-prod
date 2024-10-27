@@ -304,6 +304,60 @@
     "/assets/farma-DaZogYCL.jpeg",
     "/assets/SourceSerif4-Regular-BZEMUsSC.ttf"
   ],
+  "better/App.css": [
+    "/assets/boris-mbRGM4wC.png",
+    "/assets/kier-D2BAUes-.png",
+    "/assets/arrow-BW315toc.png",
+    "/assets/Montserrat-Regular-BQsUpcHj.ttf"
+  ],
+  "better/Landing.tsx": [
+    "/assets/boris-mbRGM4wC.png",
+    "/assets/kier-D2BAUes-.png",
+    "/assets/arrow-BW315toc.png",
+    "/assets/Montserrat-Regular-BQsUpcHj.ttf"
+  ],
+  "better/assets/arrow.png": [
+    "/assets/boris-mbRGM4wC.png",
+    "/assets/kier-D2BAUes-.png",
+    "/assets/arrow-BW315toc.png",
+    "/assets/Montserrat-Regular-BQsUpcHj.ttf"
+  ],
+  "better/assets/boris.png": [
+    "/assets/boris-mbRGM4wC.png",
+    "/assets/kier-D2BAUes-.png",
+    "/assets/arrow-BW315toc.png",
+    "/assets/Montserrat-Regular-BQsUpcHj.ttf"
+  ],
+  "better/assets/gun.svg": [
+    "/assets/boris-mbRGM4wC.png",
+    "/assets/kier-D2BAUes-.png",
+    "/assets/arrow-BW315toc.png",
+    "/assets/Montserrat-Regular-BQsUpcHj.ttf"
+  ],
+  "better/assets/kier.png": [
+    "/assets/boris-mbRGM4wC.png",
+    "/assets/kier-D2BAUes-.png",
+    "/assets/arrow-BW315toc.png",
+    "/assets/Montserrat-Regular-BQsUpcHj.ttf"
+  ],
+  "better/better.tsx": [
+    "/assets/boris-mbRGM4wC.png",
+    "/assets/kier-D2BAUes-.png",
+    "/assets/arrow-BW315toc.png",
+    "/assets/Montserrat-Regular-BQsUpcHj.ttf"
+  ],
+  "better/index.css": [
+    "/assets/boris-mbRGM4wC.png",
+    "/assets/kier-D2BAUes-.png",
+    "/assets/arrow-BW315toc.png",
+    "/assets/Montserrat-Regular-BQsUpcHj.ttf"
+  ],
+  "better/index.html": [
+    "/assets/boris-mbRGM4wC.png",
+    "/assets/kier-D2BAUes-.png",
+    "/assets/arrow-BW315toc.png",
+    "/assets/Montserrat-Regular-BQsUpcHj.ttf"
+  ],
   "index.html": [
     "/assets/arrowzhest-CKVR-Zus.gif",
     "/assets/dedtest-CPxRoqZQ.jpg",

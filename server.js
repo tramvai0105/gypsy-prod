@@ -6,6 +6,7 @@ import authRouter from './server/authRouter.js'
 import "dotenv/config"
 import adminRouter from './server/adminRouter.js'
 import bestRouter from './server/bestRouter.js'
+import betterRouter from './server/betterRouter.js'
 import cookieParser from 'cookie-parser'
 import apiProtectedRouter from './server/apiProtectedRouter.js'
 
@@ -55,6 +56,8 @@ app.use("/api", apiRouter)
 app.use("/api", apiProtectedRouter)
 app.use("/admin", adminRouter)
 app.use("/best", bestRouter)
+app.use("/better", betterRouter)
+
 
 
 // Serve HTML
